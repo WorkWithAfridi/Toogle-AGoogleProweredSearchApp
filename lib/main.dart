@@ -3,9 +3,10 @@ import 'package:tooglesearchapp/Layout/mobileScreenLayout.dart';
 import 'package:tooglesearchapp/Layout/responsiveLayoutScreen.dart';
 import 'package:tooglesearchapp/Layout/webScreenLayout.dart';
 import 'package:tooglesearchapp/constants/colors.dart';
+import 'package:tooglesearchapp/screens/searchScreen.dart';
 
 void main() {
-  runApp(ToogleSearch());
+  runApp(const ToogleSearch());
 }
 
 class ToogleSearch extends StatelessWidget {
@@ -18,12 +19,15 @@ class ToogleSearch extends StatelessWidget {
       title: 'ToogleSearch',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
-        appBarTheme: AppBarTheme().copyWith(backgroundColor: backgroundColor, elevation: 0),
+        appBarTheme: const AppBarTheme()
+            .copyWith(backgroundColor: backgroundColor, elevation: 0),
       ),
-      home: ResponsiveLayoutScreen(
-        mobileScreenLayout: MobileScreenLayout(),
-        webScreenLayout: WebScreenLayout(),
-      ),
+      home: SearchScreen(),
+
+      // const ResponsiveLayoutScreen(
+      //   mobileScreenLayout: MobileScreenLayout(),
+      //   webScreenLayout: WebScreenLayout(),
+      // ),
     );
   }
 }

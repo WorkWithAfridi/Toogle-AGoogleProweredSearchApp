@@ -6,7 +6,6 @@ import 'package:tooglesearchapp/widgets/searchBar.dart';
 import '../widgets/mobileFooter.dart';
 import '../widgets/searchButtons.dart';
 import '../widgets/translationButtons.dart';
-import '../widgets/webFooter.dart';
 
 class MobileScreenLayout extends StatelessWidget {
   const MobileScreenLayout({Key? key}) : super(key: key);
@@ -71,7 +70,7 @@ class MobileScreenLayout extends StatelessWidget {
           ],
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Column(
             children: [
               Expanded(
@@ -90,7 +89,7 @@ class MobileScreenLayout extends StatelessWidget {
                   ],
                 ),
               ),
-              MobileFooter()
+              const MobileFooter()
             ],
           ),
         ));
