@@ -14,19 +14,21 @@ class SearchHeader extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Padding(
-            padding: EdgeInsets.only(left: 28, right: 28, top: 5),
-            child: Image.asset(
-              'assets/images/google-logo.png',
-              // width: 100,
-              height: 30,
-            ),
+          SizedBox(
+            width: 20,
           ),
-          // SizedBox(
-          //   width: 10,
-          // ),
+          Text(
+            'Toogle',
+            style: TextStyle(
+                fontFamily: 'Aerial',
+                fontSize: 25,
+                fontWeight: FontWeight.w700),
+          ),
+          SizedBox(
+            width: 35,
+          ),
           Container(
-            width: size.width * .45,
+            width: size.width * .60,
             height: 45,
             decoration: BoxDecoration(
               color: searchColor,
