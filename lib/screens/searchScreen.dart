@@ -7,35 +7,41 @@ import '../widgets/searchResultCOmponent.dart';
 import '../widgets/searchTab.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  final String searchQuery;
+  final String start;
+  const SearchScreen({Key? key, required this.searchQuery, required this.start})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SearchHeader(),
-              Padding(
+              SearchHeader(
+                start: start,
+                searchQuery: searchQuery,
+              ),
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 child: SearchTabs(),
               ),
-              Divider(
+              const Divider(
                 height: 0,
                 thickness: 1,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Container(
+              SizedBox(
                 width: double.maxFinite,
                 child: FutureBuilder(
                   future: ApiService()
-                      .fetchData(queryTerm: "queryTerm", start: "0"),
+                      .fetchData(queryTerm: searchQuery, start: start),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       return Column(
@@ -43,17 +49,17 @@ class SearchScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Text(
                               "About ${snapshot.data!["searchInformation"]["formattedTotalResults"]} results (${snapshot.data!["searchInformation"]["formattedSearchTime"]} seconds)",
-                              style: TextStyle(color: Colors.grey),
+                              style: const TextStyle(color: Colors.grey),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 10),
                             child: Row(
-                              children: [
+                              children: const [
                                 Text(
                                   'Showing results for ',
                                   style: TextStyle(color: Colors.grey),
@@ -65,7 +71,7 @@ class SearchScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           ListView.builder(
@@ -73,7 +79,8 @@ class SearchScreen extends StatelessWidget {
                               itemCount: snapshot.data!["items"].length,
                               itemBuilder: (context, index) {
                                 return Padding(
-                                  padding: EdgeInsets.only(left: 20, top: 10),
+                                  padding:
+                                      const EdgeInsets.only(left: 20, top: 10),
                                   child: SearchResultComponent(
                                     description: snapshot.data!["items"][index]
                                         ["snippet"],
@@ -85,7 +92,65 @@ class SearchScreen extends StatelessWidget {
                                         ["title"],
                                   ),
                                 );
-                              })
+                              }),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    if (int.parse(start) > 0) {
+                                      Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                          builder: (context) => SearchScreen(
+                                            searchQuery: searchQuery,
+                                            start: (int.parse(start) - 10)
+                                                .toString(),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  child: const Text(
+                                    "Prev",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.pink,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) => SearchScreen(
+                                          searchQuery: searchQuery,
+                                          start: (int.parse(start) + 10)
+                                              .toString(),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text(
+                                    "Next",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.pink,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          const SearchFooter(),
                         ],
                       );
                     }
@@ -95,42 +160,6 @@ class SearchScreen extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Prev",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.pink,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Next",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.pink,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              SearchFooter(),
             ],
           ),
         ),

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tooglesearchapp/Layout/mobileScreenLayout.dart';
+import 'package:tooglesearchapp/Layout/responsiveLayoutScreen.dart';
+import 'package:tooglesearchapp/Layout/webScreenLayout.dart';
 import 'package:tooglesearchapp/constants/colors.dart';
+
+import '../screens/searchScreen.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({Key? key}) : super(key: key);
@@ -8,7 +13,7 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final finalSize = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -23,7 +28,7 @@ class SearchBar extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           SizedBox(
@@ -49,7 +54,17 @@ class SearchBar extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextField(
-                      decoration: InputDecoration.collapsed(
+                      onSubmitted: (query) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => SearchScreen(
+                              searchQuery: query,
+                              start: "0",
+                            ),
+                          ),
+                        );
+                      },
+                      decoration: const InputDecoration.collapsed(
                           hintText: "Search", border: InputBorder.none),
                     ),
                   ),

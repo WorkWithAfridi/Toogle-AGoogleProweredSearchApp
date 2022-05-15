@@ -42,7 +42,9 @@ class _SearchResultComponentState extends State<SearchResultComponent> {
             highlightColor: Colors.transparent,
             hoverColor: Colors.transparent,
             onTap: () async {
-              if (await canLaunchUrl(Uri.parse(widget.linkToGO.toString()))) ;
+              print('launch url');
+              // if(await canLaunch(urlString))
+              if (!await launchUrl(Uri.parse(widget.linkToGO))) throw 'Could not launch ${widget.linkToGO}';
             },
             onHover: (hovering) {
               setState(() {
