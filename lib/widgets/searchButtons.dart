@@ -16,7 +16,7 @@ class SearchButtons extends StatelessWidget {
             MaterialButton(
               onPressed: () {},
               color: searchColor,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
                 child: Text(
@@ -27,13 +27,13 @@ class SearchButtons extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             MaterialButton(
               onPressed: () {},
               color: searchColor,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
                 child: Text(

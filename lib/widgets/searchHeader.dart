@@ -90,28 +90,34 @@ class _SearchHeaderState extends State<SearchHeader> {
                         color: Colors.grey,
                       ),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 20,
-                      color: Colors.grey,
-                      width: 1,
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    SvgPicture.asset('assets/images/mic-icon.svg'),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    const Icon(
-                      Icons.search,
-                      color: Colors.pink,
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
+                    size.width > 500
+                        ? Row(
+                            children: [
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Container(
+                                height: 20,
+                                color: Colors.grey,
+                                width: 1,
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              SvgPicture.asset('assets/images/mic-icon.svg'),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              const Icon(
+                                Icons.search,
+                                color: Colors.pink,
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                            ],
+                          )
+                        : SizedBox.shrink(),
                   ],
                 ),
                 focusedBorder: InputBorder.none,

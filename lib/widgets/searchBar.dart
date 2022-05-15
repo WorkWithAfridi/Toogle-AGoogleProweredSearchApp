@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tooglesearchapp/Layout/mobileScreenLayout.dart';
-import 'package:tooglesearchapp/Layout/responsiveLayoutScreen.dart';
-import 'package:tooglesearchapp/Layout/webScreenLayout.dart';
 import 'package:tooglesearchapp/constants/colors.dart';
 
 import '../screens/searchScreen.dart';

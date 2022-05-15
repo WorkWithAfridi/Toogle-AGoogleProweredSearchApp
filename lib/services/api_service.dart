@@ -1,7 +1,10 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:tooglesearchapp/config/api_key.dart';
+
+import '../config/api_key.dart';
 
 class ApiService {
   bool isDummyData = true;

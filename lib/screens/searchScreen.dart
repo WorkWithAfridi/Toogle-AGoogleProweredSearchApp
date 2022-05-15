@@ -76,6 +76,7 @@ class SearchScreen extends StatelessWidget {
                           ),
                           ListView.builder(
                               shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
                               itemCount: snapshot.data!["items"].length,
                               itemBuilder: (context, index) {
                                 return Padding(
@@ -148,7 +149,7 @@ class SearchScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
-                            height: 30,
+                            height: 15,
                           ),
                           const SearchFooter(),
                         ],
